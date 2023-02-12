@@ -3,7 +3,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: #@ data.values.metadata.name
+  name: #@ data.values.name
   namespace: #@ data.values.namespace
 spec:
   replicas: #@ data.values.replicas
@@ -12,15 +12,22 @@ spec:
       containers:
       - name: default
         ports:
-        - containerPort: 8080
+        - containerPort: #@ data.values.port
         image: #@ data.values.image
+        args:
+        - #@ "-listen=:{}".format(data.values.port)
+        - '-text=Hello World'
         
 ---
 kind: Service
 apiVersion: v1
 metadata:
   name: echo-service
+  namespace: #@ data.values.namespace
 spec:
+  #@ if hasattr(data.values,"service_type"):
+  type: #@ data.values.service_type
+  #@ end
   ports:
   - name: echo-first
-    port: 8080
+    port: #@ data.values.port
