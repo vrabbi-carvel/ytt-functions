@@ -3,39 +3,33 @@
 #@ load("@ytt:struct", "struct")
 #@ load("@ytt:overlay", "overlay")
 
-#@ def labels(values):
-#@  domain = values["domain"]
-#@ app_name = values["name"]
-#@ app_version = values["version"]
-#@ part_of = values["part_of"]
-#@ component = values["component"]
-#@ team = values["team"]
+#@ domain = "vrabbi.cloud"
 
-  _: #@ template.replace({"app.{}/name".format(domain):app_name})
-  _: #@ template.replace({"app.{}/version".format(domain):app_version})
-  _: #@ template.replace({"app.{}/component".format(domain):component})
-  _: #@ template.replace({"app.{}/part_of".format(domain):part_of})
-  _: #@ template.replace({"app.{}/team".format(domain):team})
+#@ def domained_labels(values):
+#@   for v in values:
+       _: #@ template.replace({"app.{}/{}".format(domain,v):values[v]})
+#@   end
 #@ end
+
 #@overlay/match by=overlay.all, expects="1+"
 ---
 metadata:
   #@overlay/match missing_ok=True
   #@overlay/match-child-defaults missing_ok=True
-  labels: #@ labels(data.values.metadata)
+  labels: #@ domained_labels(data.values.labels)
   
 #@overlay/match by=overlay.subset({"kind": "Service"}), expects="0+"
 ---
 #@overlay/match-child-defaults missing_ok=True
 spec:
-  selector: #@ labels(data.values.metadata)
+  selector: #@ domained_labels(data.values.labels)
 
 #@overlay/match by=overlay.subset({"kind": "Deployment"}), expects="0+"
 ---
 #@overlay/match-child-defaults missing_ok=True
 spec:
   selector: 
-    matchLabels: #@ labels(data.values.metadata)
+    matchLabels: #@ domained_labels(data.values.labels)
   template:
     metadata:
-      labels: #@ labels(data.values.metadata)
+      labels: #@ domained_labels(data.values.labels)
