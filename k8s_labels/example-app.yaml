@@ -1,0 +1,26 @@
+#@ load("@ytt:data", "data")
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: #@ data.values.metadata.name
+  namespace: #@ data.values.namespace
+spec:
+  replicas: #@ data.values.replicas
+  template:
+    spec:
+      containers:
+      - name: default
+        ports:
+        - containerPort: 8080
+        image: #@ data.values.image
+        
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: echo-service
+spec:
+  ports:
+  - name: echo-first
+    port: 8080
