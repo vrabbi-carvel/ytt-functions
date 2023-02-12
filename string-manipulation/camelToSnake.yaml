@@ -1,0 +1,34 @@
+#@ def camelToSnakeCase(name):
+#@   name = name.replace("A","_a")
+#@   name = name.replace("B","_b")
+#@   name = name.replace("C","_c")
+#@   name = name.replace("D","_d")
+#@   name = name.replace("E","_e")
+#@   name = name.replace("F","_f")
+#@   name = name.replace("G","_g")
+#@   name = name.replace("H","_h")
+#@   name = name.replace("I","_i")
+#@   name = name.replace("J","_j")
+#@   name = name.replace("K","_k")
+#@   name = name.replace("L","_l")
+#@   name = name.replace("M","_m")
+#@   name = name.replace("N","_n")
+#@   name = name.replace("O","_o")
+#@   name = name.replace("P","_p")
+#@   name = name.replace("Q","_q")
+#@   name = name.replace("R","_r")
+#@   name = name.replace("S","_s")
+#@   name = name.replace("T","_t")
+#@   name = name.replace("U","_u")
+#@   name = name.replace("V","_v")
+#@   name = name.replace("W","_w")
+#@   name = name.replace("X","_x")
+#@   name = name.replace("Y","_y")
+#@   name = name.replace("Z","_z")
+#@   if name.startswith("_"):
+#@     name = name.replace("_","",1)
+#@   end
+#@   return name
+#@ end
+---
+example: #@ camelToSnakeCase("sampleValue")
