@@ -7,5 +7,6 @@ labels:
   part_of: demo
   team: vrabbi
 namespace: demo-ns
+name: echo
 replicas: 1
 image: hashicorp/http-echo
