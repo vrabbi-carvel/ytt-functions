@@ -1,0 +1,14 @@
+#@ def snakeToCamelCase(name):
+#@   name_parts = name.split("_")
+#@   v = ""
+#@   for p in name_parts:
+#@     if v != "":
+#@       v = v + p.capitalize()
+#@     else:
+#@       v = p
+#@     end
+#@   end
+#@   return v
+#@ end
+---
+example: #@ snakeToCamelCase("sample_value")
