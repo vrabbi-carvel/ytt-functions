@@ -10,3 +10,4 @@ namespace: demo-ns
 name: echo
 replicas: 1
 image: hashicorp/http-echo
+port: 8080
