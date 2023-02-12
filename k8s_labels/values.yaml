@@ -11,3 +11,4 @@ name: echo
 replicas: 1
 image: hashicorp/http-echo
 port: 8080
+service_type: LoadBalancer
