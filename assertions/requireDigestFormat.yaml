@@ -1,0 +1,16 @@
+#@ load("@ytt:assert", "assert")
+#@ load("@ytt:regexp", "regexp")
+#@ load("@ytt:data", "data")
+
+#@ def immutable_image(image):
+#@ if regexp.match(".*@sha256:.*",image):
+#@   return image
+#@ else:
+#@   assert.fail("The image reference {} is not using the required digest format".format(image))
+#@ end
+#@ end
+
+
+
+---
+a: #@ immutable_image(data.values.image)
