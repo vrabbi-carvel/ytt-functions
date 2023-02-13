@@ -1,10 +1,11 @@
 # Existing File Overlay
 
 This example serves as a refrence to overlaying a specific value parameter, ontop of an exisiting `values.yaml` file.
-This comes handy when templating a 'values.yaml' file for Helm using YTT.
+
+This comes handy when templating a `values.yaml` file for Helm using YTT.
 
 ## Usage example:
-Assume a given YAML values file.
+Assume a given YAML values file (`values.yaml` file under root directory)
 ```yaml
 # values.yaml file in root directory
 image:
@@ -23,12 +24,12 @@ Triggering the function
 Will result in the following output:
 ```yaml
 image:
-      repository: my-image-repo/my-image-name       # overlayed
-      tag: latest
-      digest: sha256:123456789                      # overlayed
-    some:
-      additional_values: true
-      some_more: 123
+  repository: my-image-repo/my-image-name       # overlayed
+  tag: latest
+  digest: sha256:123456789                      # overlayed
+some:
+  additional_values: true
+  some_more: 123
 ```
 
 ## Insert into a ConfigMap
