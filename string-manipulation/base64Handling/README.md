@@ -1,6 +1,6 @@
 # Base64 handling functions
 
-this is a sample of 2 functions:
+This sample has 2 functions:
 1. cert_b64
 2. cert_string
 
