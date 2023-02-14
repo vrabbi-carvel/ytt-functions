@@ -1,3 +1,18 @@
+#@ load("@ytt:data","data")
+
+#@ def snakeToCamelCase(name):
+#@   name_parts = name.split("_")
+#@   v = ""
+#@   for p in name_parts:
+#@     if v != "":
+#@       v = v + p.capitalize()
+#@     else:
+#@       v = p
+#@     end
+#@   end
+#@   return v
+#@ end
+
 #@ def camelToSnakeCase(name):
 #@   name = name.replace("A","_a")
 #@   name = name.replace("B","_b")
@@ -31,4 +46,5 @@
 #@   return name
 #@ end
 ---
-example: #@ camelToSnakeCase("sampleValue")
+snake_to_camel: #@ camelToSnakeCase(data.values.snake_input)
+camel_to_snake: #@ snakeToCamelCase(data.values.camel_input)
