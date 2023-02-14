@@ -1,21 +1,53 @@
 # Case Conversion functions
-Many tools expect to recieve inputs in either snake_case or camelCase formats.  
-When we are recieving data values from certain sources, we may need to convert these values.  
+Many tools expect to recieve inputs in specific formats.  
+When we are recieving data values from certain sources, we may need to convert these values between formats which can be challenging at times.  
 
-This example includes 2 functions:
-1. camelToSnakeCase
-2. snakeToCamelCase
+The key formats we see being used are:
+1. Camel Case (eg. thisIsCameCase)
+2. Pascal Case (eg. ThisIsPascalCase)
+3. Kebab Case (eg. this-is-kebab-case)
+4. Snake Case (eg this_is_snake_case)
+5. Spaces (eg. this is spaced text)
 
-## Camel To Snake Case Conversion
-This function will convert an input that is recieved in camelCase format into snake_case format
+This example includes 20 functions overall to help convert between those 5 types of text input:
 
-## Snake To Camel Case Conversion
-This function will convert an input that is recieved in snake_case format into camelCase format
+### Convert From Camel Case
+* camelToPascalCase
+* camelToKebabCase
+* camelToSnakeCase
+* camelToSpaces
 
-## Sample Data Values
+### Convert From Pascal Case
+* pascalToCamelCase
+* pascalToKebabCase
+* pascalToSnakeCase
+* pascalToSpaces
+
+### Convert From Kebab Case
+* kebabToCamelCase
+* kebabToPascalCase
+* kebabToSnakeCase
+* kebabToSpaces
+
+### Convert From Snake Case
+* snakeToCamelCase
+* snakeToPascalCase
+* snakeToKebabCase
+* snakeToSpaces
+
+### Convert From Spaced Text
+* spacesToCamelCase
+* spacesToPascalCase
+* spacesToKebabCase
+* spacesToSnakeCase
+
+# Sample Data Values
 ```yaml
 #@data/values
 ---
 snake_input: this_is_an_input_in_snake_case
+kebab_input: this-is-an-input-in-kebab-case
 camel_input: thisIsAnInputInCamelCase
+pascal_input: ThisIsAnInputInPascalCase
+spaces_input: "this is an input using spaces"
 ```
