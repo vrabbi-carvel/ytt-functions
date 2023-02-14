@@ -1,4 +1,14 @@
 #@ load("@ytt:data","data")
+#@ load("@ytt:struct","struct")
+
+#@ def snakeToPascalCase(name):
+#@   name_parts = name.split("_")
+#@   v = ""
+#@   for p in name_parts:
+#@     v = v + p.capitalize()
+#@   end
+#@   return v
+#@ end
 
 #@ def snakeToCamelCase(name):
 #@   name_parts = name.split("_")
@@ -13,38 +23,239 @@
 #@   return v
 #@ end
 
+#@ def snakeToKebabCase(name):
+#@   name_parts = name.split("_")
+#@   v = ""
+#@   for p in name_parts:
+#@     if v != "":
+#@       v = v + "-" + p
+#@     else:
+#@       v = p
+#@     end
+#@   end
+#@   return v
+#@ end
+
+#@ def snakeToSpaces(name):
+#@   name_parts = name.split("_")
+#@   v = ""
+#@   for p in name_parts:
+#@     if v != "":
+#@       v = v + " " + p
+#@     else:
+#@       v = p
+#@     end
+#@   end
+#@   return v
+#@ end
+
+#@ def kebabToPascalCase(name):
+#@   name_parts = name.split("-")
+#@   v = ""
+#@   for p in name_parts:
+#@     v = v + p.capitalize()
+#@   end
+#@   return v
+#@ end
+
+#@ def kebabToCamelCase(name):
+#@   name_parts = name.split("-")
+#@   v = ""
+#@   for p in name_parts:
+#@     if v != "":
+#@       v = v + p.capitalize()
+#@     else:
+#@       v = p
+#@     end
+#@   end
+#@   return v
+#@ end
+
+#@ def kebabToSnakeCase(name):
+#@   name_parts = name.split("-")
+#@   v = ""
+#@   for p in name_parts:
+#@     if v != "":
+#@       v = v + "_" + p
+#@     else:
+#@       v = p
+#@     end
+#@   end
+#@   return v
+#@ end
+
+#@ def kebabToSpaces(name):
+#@   name_parts = name.split("-")
+#@   v = ""
+#@   for p in name_parts:
+#@     if v != "":
+#@       v = v + " " + p
+#@     else:
+#@       v = p
+#@     end
+#@   end
+#@   return v
+#@ end
+
 #@ def camelToSnakeCase(name):
-#@   name = name.replace("A","_a")
-#@   name = name.replace("B","_b")
-#@   name = name.replace("C","_c")
-#@   name = name.replace("D","_d")
-#@   name = name.replace("E","_e")
-#@   name = name.replace("F","_f")
-#@   name = name.replace("G","_g")
-#@   name = name.replace("H","_h")
-#@   name = name.replace("I","_i")
-#@   name = name.replace("J","_j")
-#@   name = name.replace("K","_k")
-#@   name = name.replace("L","_l")
-#@   name = name.replace("M","_m")
-#@   name = name.replace("N","_n")
-#@   name = name.replace("O","_o")
-#@   name = name.replace("P","_p")
-#@   name = name.replace("Q","_q")
-#@   name = name.replace("R","_r")
-#@   name = name.replace("S","_s")
-#@   name = name.replace("T","_t")
-#@   name = name.replace("U","_u")
-#@   name = name.replace("V","_v")
-#@   name = name.replace("W","_w")
-#@   name = name.replace("X","_x")
-#@   name = name.replace("Y","_y")
-#@   name = name.replace("Z","_z")
+#@   name = caseConversion(name,"_")
 #@   if name.startswith("_"):
 #@     name = name.replace("_","",1)
 #@   end
 #@   return name
 #@ end
+
+#@ def camelToPascalCase(name):
+#@   f = name[0]
+#@   cf = f.capitalize()
+#@   return name.replace(f, cf, 1)
+#@ end
+
+#@ def camelToKebabCase(name):
+#@   name = caseConversion(name,"-")
+#@   if name.startswith("-"):
+#@     name = name.replace("-","",1)
+#@   end
+#@   return name
+#@ end
+
+#@ def camelToSpaces(name):
+#@   name = caseConversion(name," ")
+#@   if name.startswith(" "):
+#@     name = name.replace(" ","",1)
+#@   end
+#@   return name
+#@ end
+
+#@ def pascalToSnakeCase(name):
+#@   name = caseConversion(name,"_")
+#@   if name.startswith("_"):
+#@     name = name.replace("_","",1)
+#@   end
+#@   return name
+#@ end
+
+#@ def pascalToCamelCase(name):
+#@   f = name[0]
+#@   lf = f.lower()
+#@   return name.replace(f, lf, 1)
+#@ end
+
+#@ def pascalToKebabCase(name):
+#@   name = caseConversion(name,"-")
+#@   if name.startswith("-"):
+#@     name = name.replace("-","",1)
+#@   end
+#@   return name
+#@ end
+
+#@ def pascalToSpaces(name):
+#@   name = caseConversion(name," ")
+#@   if name.startswith(" "):
+#@     name = name.replace(" ","",1)
+#@   end
+#@   return name
+#@ end
+
+#@ def spacesToPascalCase(name):
+#@   name_parts = name.split(" ")
+#@   v = ""
+#@   for p in name_parts:
+#@     v = v + p.capitalize()
+#@   end
+#@   return v
+#@ end
+
+#@ def spacesToCamelCase(name):
+#@   name_parts = name.split(" ")
+#@   v = ""
+#@   for p in name_parts:
+#@     if v != "":
+#@       v = v + p.capitalize()
+#@     else:
+#@       v = p
+#@     end
+#@   end
+#@   return v
+#@ end
+
+#@ def spacesToSnakeCase(name):
+#@   name_parts = name.split(" ")
+#@   v = ""
+#@   for p in name_parts:
+#@     if v != "":
+#@       v = v + "_" + p
+#@     else:
+#@       v = p
+#@     end
+#@   end
+#@   return v
+#@ end
+
+#@ def spacesToKebabCase(name):
+#@   name_parts = name.split(" ")
+#@   v = ""
+#@   for p in name_parts:
+#@     if v != "":
+#@       v = v + "-" + p
+#@     else:
+#@       v = p
+#@     end
+#@   end
+#@   return v
+#@ end
+
+#@ def caseConversion(name,delim):
+#@   name = name.replace("A",delim + "a")
+#@   name = name.replace("B",delim + "b")
+#@   name = name.replace("C",delim + "c")
+#@   name = name.replace("D",delim + "d")
+#@   name = name.replace("E",delim + "e")
+#@   name = name.replace("F",delim + "f")
+#@   name = name.replace("G",delim + "g")
+#@   name = name.replace("H",delim + "h")
+#@   name = name.replace("I",delim + "i")
+#@   name = name.replace("J",delim + "j")
+#@   name = name.replace("K",delim + "k")
+#@   name = name.replace("L",delim + "l")
+#@   name = name.replace("M",delim + "m")
+#@   name = name.replace("N",delim + "n")
+#@   name = name.replace("O",delim + "o")
+#@   name = name.replace("P",delim + "p")
+#@   name = name.replace("Q",delim + "q")
+#@   name = name.replace("R",delim + "r")
+#@   name = name.replace("S",delim + "s")
+#@   name = name.replace("T",delim + "t")
+#@   name = name.replace("U",delim + "u")
+#@   name = name.replace("V",delim + "v")
+#@   name = name.replace("W",delim + "w")
+#@   name = name.replace("X",delim + "x")
+#@   name = name.replace("Y",delim + "y")
+#@   name = name.replace("Z",delim + "z")
+#@   return name
+#@ end
 ---
-snake_to_camel: #@ camelToSnakeCase(data.values.snake_input)
-camel_to_snake: #@ snakeToCamelCase(data.values.camel_input)
+snake_to_camel: #@ snakeToCamelCase(data.values.snake_input)
+kebab_to_camel: #@ kebabToCamelCase(data.values.kebab_input)
+pascal_to_camel: #@ pascalToCamelCase(data.values.pascal_input)
+spaces_to_camel: #@ spacesToCamelCase(data.values.spaces_input)
+
+snake_to_kebab: #@ snakeToKebabCase(data.values.snake_input)
+camel_to_kebab: #@ camelToKebabCase(data.values.camel_input)
+pascal_to_kebab: #@ pascalToKebabCase(data.values.pascal_input)
+spaces_to_kebab: #@ spacesToKebabCase(data.values.spaces_input)
+
+snake_to_pascal: #@ snakeToPascalCase(data.values.snake_input)
+kebab_to_pascal: #@ kebabToPascalCase(data.values.kebab_input)
+camel_to_pascal: #@ camelToPascalCase(data.values.camel_input)
+spaces_to_pascal: #@ spacesToPascalCase(data.values.spaces_input)
+
+snake_to_spaces: #@ snakeToSpaces(data.values.snake_input)
+kebab_to_spaces: #@ kebabToSpaces(data.values.kebab_input)
+camel_to_spaces: #@ camelToSpaces(data.values.camel_input)
+pascal_to_spaces: #@ pascalToSpaces(data.values.pascal_input)
+
+kebab_to_snake: #@ kebabToSnakeCase(data.values.kebab_input)
+camel_to_snake: #@ camelToSnakeCase(data.values.camel_input)
+pascal_to_snake: #@ pascalToSnakeCase(data.values.pascal_input)
+spaces_to_snake: #@ spacesToSnakeCase(data.values.spaces_input)
