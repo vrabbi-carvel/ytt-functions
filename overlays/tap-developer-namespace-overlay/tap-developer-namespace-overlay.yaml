@@ -1,0 +1,9 @@
+#@ load("@ytt:overlay", "overlay")
+
+#@overlay/match by=overlay.subset({"apiVersion": "v1", "kind": "Namespace"}), expects="0+"
+---
+metadata:
+  #@overlay/match missing_ok=True
+  labels:
+    #@overlay/match missing_ok=True
+    apps.tanzu.vmware.com/tap-ns: ""
